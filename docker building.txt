@@ -1,0 +1,52 @@
+docker build -t <name:tag> .
+or
+docker buildx build -t <name:tag> . 
+
+----to push to hub
+
+docker login
+docker tag <name:tag> docker_hub_username/<name:tag>
+docker push docker-hub-username/my-image:latest
+
+-----dockerfile (static webpage)
+
+# Use an official web server as a parent image
+FROM nginx:1-alpine-slim
+
+# Copy your webpage files into the container                  
+COPY . /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
+
+# Define the command to start the web server
+CMD ["nginx", "-g", "daemon off;"]
+
+
+
+----dockerfile (react)
+
+# Use an official Node.js runtime as a base image
+FROM node:14
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy package.json and package-lock.json to the working directory
+COPY package*.json ./
+
+# Install project dependencies
+RUN npm install
+
+# Copy the rest of your application code
+COPY . .
+
+# Build your React app (replace 'npm run build' with your actual build command)
+RUN npm run build
+
+# Expose a port for the web server (e.g., port 80)
+EXPOSE 80
+
+# Define the command to start your application
+CMD [ "npm", "start" ]
+
