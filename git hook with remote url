@@ -1,4 +1,4 @@
 #!/bin/bash
-curl -u <token>:<token> http://13.232.60.157:8080/job/demo001/build?token=admin
+curl -u <token>:<token> http://<ip>:8080/job/demo001/build?token=admin
 
 echo "git hook"
