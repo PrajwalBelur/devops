@@ -1,8 +1,7 @@
-root@ansible-master:~# vi playbook.yml
 ---
 - name: Install and start nginx
   hosts: all
-  become: root
+  become: true
 
   tasks:
   - name: install nginx
