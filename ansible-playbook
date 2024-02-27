@@ -1,0 +1,15 @@
+root@ansible-master:~# vi playbook.yml
+---
+- name: Install and start nginx
+  hosts: all
+  become: root
+
+  tasks:
+  - name: install nginx
+    apt:
+      name: nginx
+      state: present
+  - name: start nginx
+    service:
+      name: nginx
+      state: started
